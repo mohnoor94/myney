@@ -1,0 +1,18 @@
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        # Security Risk, I know :3
+        include: "health,info,mappings"
+info:
+  app:
+    name: Myney
+    version: 1.0.0
+    description: A tiny learning-by-doing application to simulate a basic bank.
+    contact:
+      name: Mohammad Noor
+      url: https://www.noor.guru
+      email: "moh.noor94@gmail.com"

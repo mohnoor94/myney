@@ -16,10 +16,15 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10")
+
     implementation("org.springframework.boot:spring-boot-starter:2.7.3")
     implementation("org.springframework.boot:spring-boot-starter-web:2.7.3")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10")
+    implementation("org.springframework.boot:spring-boot-starter-actuator:2.7.3")
+
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
+    implementation("com.fasterxml.uuid:java-uuid-generator:4.0.1")
+
     implementation("io.swagger.core.v3:swagger-annotations:2.2.2")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
