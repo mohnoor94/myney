@@ -7,6 +7,7 @@ management:
       exposure:
         # Security Risk, I know :3
         include: "health,info,mappings"
+      base-path: /status
 info:
   app:
     name: Myney

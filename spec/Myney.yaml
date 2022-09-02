@@ -10,7 +10,7 @@ info:
     email: moh.noor94@gmail.com
 
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:8080'
     description: Local server
   - url: 'https://test.api.myney.noor.guru'
     description: Test server
@@ -159,6 +159,71 @@ paths:
                 $ref: '#/components/schemas/Error'
 
 
+  /status/health:
+    get:
+      summary: Get health status
+      description: Get health status
+      operationId: getHealth
+      tags:
+        - Status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+  /status/info:
+    get:
+      summary: Get application info
+      description: Get application info
+      operationId: getInfo
+      tags:
+        - Status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /status/mappings:
+    get:
+      summary: Get application mappings
+      description: Get application mappings
+      operationId: getMappings
+      tags:
+        - Status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mappings'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
 components:
   schemas:
     Account:
@@ -235,3 +300,44 @@ components:
       required:
           - code
           - message
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Health status
+          example: UP
+      required:
+          - status
+
+
+    Info:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Application name
+          example: Myney
+        version:
+          type: string
+          description: Application version
+          example: 1.0.0
+        description:
+          type: string
+          description: Application description
+          example: A tiny learning-by-doing application to simulate a basic bank.
+        contact:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Contact name
+              example: Mohammad Noor
+            url:
+              type: string
+              description: Contact URL
+              example: https://www.noor.guru
+            email:
+                type: string
+                description: Contact email
+                example: moh.noor94@gmail.com
