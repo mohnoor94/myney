@@ -1,12 +1,14 @@
 openapi: 3.0.3
+
 info:
   title: Myney
   description: A tiny learning-by-doing application to simulate a basic bank.
-  version: 0.0.1
+  version: 1.0.0
   contact:
     name: Mohammad Noor
     url: https://www.noor.guru
     email: moh.noor94@gmail.com
+
 servers:
   - url: 'http://localhost:3000'
     description: Local server
@@ -14,5 +16,221 @@ servers:
     description: Test server
   - url: 'https://api.myney.noor.guru'
     description: Production server
+
+#TODO: Add security
+#security:
+#  - basicAuth: []
+
 paths:
-  
+  /v1/accounts/{id}:
+    get:
+      summary: Get an account
+      description: Get an account
+      operationId: getAccount
+      tags:
+        - Accounts
+      parameters:
+        - name: id
+          in: path
+          description: Account ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+  /v1/accounts/{id}/transactions:
+    get:
+      summary: Get all transactions of an account
+      description: Get all transactions of an account
+      operationId: getAccountTransactions
+      tags:
+        - Accounts
+        - Transactions
+      parameters:
+        - name: id
+          in: path
+          description: Account ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a transaction
+      description: Create a transaction
+      operationId: createTransaction
+      tags:
+        - Accounts
+        - Transactions
+      parameters:
+        - name: id
+          in: path
+          description: Account ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Transaction to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Account ID
+          example: b3ef0159-6149-43b1-a54f-c75144e64931
+        name:
+          type: string
+          description: Account name
+          example: Mohammad Noor
+        balance:
+          type: number
+          description: Account balance
+          example: 25000
+        currency:
+          type: string
+          description: Account currency
+          example: USD
+        createdAt:
+          type: string
+          format: date-time
+          description: Account creation date
+          example: 2022-01-01T00:00:00.000Z
+      required:
+            - id
+            - name
+            - balance
+            - currency
+            - createdAt
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Transaction ID
+          example: 1b3ef0159-6149-43b1-a54f-c75144e64931
+        accountId:
+          type: string
+          description: Account ID
+          example: b3ef0159-6149-43b1-a54f-c75144e64931
+        amount:
+          type: number
+          description: Transaction amount
+          example: 2500
+        currency:
+          type: string
+          description: Transaction currency
+          example: USD
+        createdAt:
+          type: string
+          format: date-time
+          description: Transaction creation date
+          example: 2022-09-01T00:00:00.000Z
+      required:
+          - id
+          - accountId
+          - amount
+          - currency
+          - createdAt
+    Error:
+      type: object
+      properties:
+          code:
+            type: string
+            description: Error code
+            example: 1007
+          message:
+            type: string
+            description: Error message
+      required:
+          - code
+          - message
