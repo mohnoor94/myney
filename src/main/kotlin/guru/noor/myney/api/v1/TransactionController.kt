@@ -22,6 +22,6 @@ class TransactionController {
 
 
     companion object {
-        val log: Logger = LoggerFactory.getLogger(TransactionController::class.java)
+        private val log: Logger = LoggerFactory.getLogger(TransactionController::class.java)
     }
 }
