@@ -182,9 +182,9 @@ components:
           example: USD
         createdAt:
           type: string
-          format: date-time
+          format: yyyy-MM-dd'T'HH:mm:ss.SSSXXX z
           description: Account creation date
-          example: 2022-01-01T00:00:00.000Z
+          example: 2022-09-02T23:13:19.534+03:00 EEST
       required:
             - id
             - name
@@ -212,9 +212,9 @@ components:
           example: USD
         createdAt:
           type: string
-          format: date-time
+          format: yyyy-MM-dd'T'HH:mm:ss.SSSXXX z
           description: Transaction creation date
-          example: 2022-09-01T00:00:00.000Z
+          example: 2022-09-02T23:13:19.534+03:00 EEST
       required:
           - id
           - accountId
@@ -227,10 +227,11 @@ components:
           code:
             type: string
             description: Error code
-            example: 1007
+            example: 1001
           message:
             type: string
             description: Error message
+            example: Account not found
       required:
           - code
           - message
