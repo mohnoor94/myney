@@ -6,7 +6,7 @@ management:
     web:
       exposure:
         # Security Risk, I know :3
-        include: "health,info,mappings"
+        include: "health,info"
       base-path: /status
 info:
   app:

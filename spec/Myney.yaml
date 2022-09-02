@@ -202,27 +202,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /status/mappings:
-    get:
-      summary: Get application mappings
-      description: Get application mappings
-      operationId: getMappings
-      tags:
-        - Status
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Mappings'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-
 
 components:
   schemas:
