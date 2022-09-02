@@ -1,0 +1,18 @@
+openapi: 3.0.3
+info:
+  title: Myney
+  description: A tiny learning-by-doing application to simulate a basic bank.
+  version: 0.0.1
+  contact:
+    name: Mohammad Noor
+    url: https://www.noor.guru
+    email: moh.noor94@gmail.com
+servers:
+  - url: 'http://localhost:3000'
+    description: Local server
+  - url: 'https://test.api.myney.noor.guru'
+    description: Test server
+  - url: 'https://api.myney.noor.guru'
+    description: Production server
+paths:
+  
