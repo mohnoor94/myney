@@ -23,7 +23,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator:2.7.3")
 
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
-    implementation("com.fasterxml.uuid:java-uuid-generator:4.0.1")
 
     implementation("io.swagger.core.v3:swagger-annotations:2.2.2")
 

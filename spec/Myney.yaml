@@ -230,11 +230,9 @@ components:
           description: Account creation date
           example: 2022-09-02T23:13:19.534+03:00 EEST
       required:
-            - id
             - name
             - balance
             - currency
-            - createdAt
     Transaction:
       type: object
       properties:
@@ -260,11 +258,9 @@ components:
           description: Transaction creation date
           example: 2022-09-02T23:13:19.534+03:00 EEST
       required:
-          - id
           - accountId
           - amount
           - currency
-          - createdAt
     Error:
       type: object
       properties:

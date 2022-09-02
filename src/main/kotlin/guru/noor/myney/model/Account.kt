@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import io.swagger.v3.oas.annotations.media.Schema
 import java.math.BigDecimal
 import java.time.ZonedDateTime
+import java.util.*
 
 
 /**
@@ -37,4 +38,30 @@ data class Account(
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX z")
     @Schema(example = "2022-09-02T23:13:19.534+03:00 EEST", required = true, description = "Account creation date")
     val createdAt: ZonedDateTime,
-)
+) {
+
+    companion object {
+
+        /**
+         * Creates a new account.
+         *
+         * @param name The name of the account.
+         * @param balance The balance of the account.
+         * @param currency The currency of the account.
+         * @param createdAt The date of creation of the account.
+         * @return The created account.
+         */
+        fun create(
+            name: String,
+            balance: Number,
+            currency: String,
+            createdAt: ZonedDateTime = ZonedDateTime.now(),
+        ): Account = Account(
+            UUID.randomUUID().toString(),
+            name,
+            balance.toDouble().toBigDecimal(),
+            currency,
+            createdAt
+        )
+    }
+}
