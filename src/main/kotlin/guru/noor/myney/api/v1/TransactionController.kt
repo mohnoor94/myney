@@ -37,6 +37,16 @@ class TransactionController(
         }
     }
 
+    // I know, I know, this is not a good idea, but it's just for demo purposes.
+    // `id` is ignored for this demo.
+    @GetMapping
+    fun getAllTransactions(@PathVariable id: String): List<Transaction> {
+        transactionService.findAll().let {
+            log.info("Returning ${it.size} transactions")
+            return it
+        }
+    }
+
 
     companion object {
         private val log: Logger = LoggerFactory.getLogger(TransactionController::class.java)

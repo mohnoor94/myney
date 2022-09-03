@@ -28,6 +28,17 @@ class AccountController(
         }
     }
 
+    // I know, I know, this is not a good idea, but it's just for demo purposes.
+    @GetMapping
+    fun getAllAccounts(): List<Account> {
+        log.info("Getting all accounts")
+
+        accountService.findAll().let {
+            log.info("Returning ${it.size} accounts")
+            return it
+        }
+    }
+
     companion object {
         private val log: Logger = LoggerFactory.getLogger(AccountController::class.java)
     }

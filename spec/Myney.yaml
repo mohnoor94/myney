@@ -13,9 +13,9 @@ servers:
   - url: 'http://localhost:8080'
     description: Local server
   - url: 'https://test.api.myney.noor.guru'
-    description: Test server
+    description: Test server [Dummy, not implemented]
   - url: 'https://api.myney.noor.guru'
-    description: Production server
+    description: Production server [Dummy, not implemented]
 
 #TODO: Add security
 #security:
@@ -63,14 +63,46 @@ paths:
                 $ref: '#/components/schemas/Error'
 
 
+  /v1/accounts:
+    get:
+      summary: Get all accounts - FOR DEMO PURPOSES ONLY
+      description: Get all accounts - FOR DEMO PURPOSES ONLY
+      operationId: getAccounts
+      tags:
+        - Accounts
+        - Demo Only Purpose
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
   /v1/accounts/{id}/transactions:
     get:
-      summary: Get all transactions of an account
-      description: Get all transactions of an account
+      summary: Get all transactions of all accounts (id is ignored) - FOR DEMO PURPOSES ONLY
+      description: Get all transactions of an accounts (id is ignored) - FOR DEMO PURPOSES ONLY
       operationId: getAccountTransactions
       tags:
         - Accounts
         - Transactions
+        - Demo Only Purpose
       parameters:
         - name: id
           in: path
