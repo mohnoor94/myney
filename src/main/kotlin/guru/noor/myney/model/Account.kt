@@ -35,7 +35,7 @@ class Account(
 
     @JsonProperty("balance")
     @Schema(example = "25000", required = true, description = "Account balance")
-    val balance: BigDecimal = BigDecimal.ZERO,
+    var balance: BigDecimal = BigDecimal.ZERO,
 
     @JsonProperty("currency")
     @Schema(example = "USD", required = true, description = "Account currency")
