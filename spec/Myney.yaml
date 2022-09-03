@@ -230,9 +230,9 @@ components:
           description: Account creation date
           example: 2022-09-02T23:13:19.534+03:00 EEST
       required:
-            - name
-            - balance
-            - currency
+        - name
+        - balance
+        - currency
     Transaction:
       type: object
       properties:
@@ -240,10 +240,14 @@ components:
           type: string
           description: Transaction ID
           example: 1b3ef0159-6149-43b1-a54f-c75144e64931
-        accountId:
+        senderAccountId:
           type: string
-          description: Account ID
+          description: Sender Account ID
           example: b3ef0159-6149-43b1-a54f-c75144e64931
+        receiverAccountId:
+          type: string
+          description: Receiver Account ID
+          example: f981810b-f774-475a-95a8-75090a2603db
         amount:
           type: number
           description: Transaction amount
@@ -258,23 +262,23 @@ components:
           description: Transaction creation date
           example: 2022-09-02T23:13:19.534+03:00 EEST
       required:
-          - accountId
-          - amount
-          - currency
+        - receiverAccountId
+        - amount
+        - currency
     Error:
       type: object
       properties:
-          code:
-            type: string
-            description: Error code
-            example: 1001
-          message:
-            type: string
-            description: Error message
-            example: Account not found
+        code:
+          type: string
+          description: Error code
+          example: 1001
+        message:
+          type: string
+          description: Error message
+          example: Account not found
       required:
-          - code
-          - message
+        - code
+        - message
     Health:
       type: object
       properties:
@@ -283,7 +287,7 @@ components:
           description: Health status
           example: UP
       required:
-          - status
+        - status
 
 
     Info:
@@ -313,6 +317,6 @@ components:
               description: Contact URL
               example: https://www.noor.guru
             email:
-                type: string
-                description: Contact email
-                example: moh.noor94@gmail.com
+              type: string
+              description: Contact email
+              example: moh.noor94@gmail.com
