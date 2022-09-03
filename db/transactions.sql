@@ -6,5 +6,7 @@ CREATE TABLE transactions
     amount              decimal(10, 0) NOT NULL DEFAULT '0',
     currency            varchar(255)   NOT NULL DEFAULT 'USD',
     created_at          datetime       NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (sender_account_id) REFERENCES accounts (id),
+    FOREIGN KEY (receiver_account_id) REFERENCES accounts (id)
 );
