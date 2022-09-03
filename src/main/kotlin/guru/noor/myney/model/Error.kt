@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Error(
     @JsonProperty("code")
     @Schema(example = "1001", required = true, description = "Error code")
-    val code: String,
+    val code: Int,
 
     @JsonProperty("message")
     @Schema(example = "Account not found", required = true, description = "Error message")

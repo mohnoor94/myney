@@ -1,5 +1,7 @@
 package guru.noor.myney.service
 
+import guru.noor.myney.ErrorType
+import guru.noor.myney.MyneyError
 import guru.noor.myney.dao.AccountRepository
 import guru.noor.myney.model.Account
 import org.springframework.stereotype.Service
@@ -30,14 +32,14 @@ class DefaultAccountService(
     override fun findAll(): List<Account> = accountRepository.findAll()
 
     override fun findById(id: String): Account {
-        return accountRepository.findById(id).orElseThrow { RuntimeException("Account not found") }
+        return accountRepository.findById(id).orElseThrow { MyneyError(ErrorType.ACCOUNT_NOT_FOUND) }
     }
 
     override fun save(account: Account): Account = accountRepository.save(account)
 
     override fun deposit(account: Account, amount: BigDecimal): Account {
         if (amount <= BigDecimal.ZERO) {
-            throw RuntimeException("Amount must be positive")
+            throw MyneyError(ErrorType.TRANSACTION_AMOUNT_NEGATIVE)
         }
 
         account.balance = account.balance.add(amount)
@@ -46,11 +48,11 @@ class DefaultAccountService(
 
     override fun withdraw(account: Account, amount: BigDecimal): Account {
         if (amount <= BigDecimal.ZERO) {
-            throw RuntimeException("Amount must be positive")
+            throw MyneyError(ErrorType.TRANSACTION_AMOUNT_NEGATIVE)
         }
 
         if (account.balance < amount) {
-            throw RuntimeException("Insufficient funds")
+            throw MyneyError(ErrorType.TRANSACTION_AMOUNT_INSUFFICIENT)
         }
 
         account.balance = account.balance.subtract(amount)

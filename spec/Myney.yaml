@@ -326,7 +326,7 @@ components:
       type: object
       properties:
         code:
-          type: string
+          type: number
           description: Error code
           example: 1001
         message:
@@ -336,6 +336,8 @@ components:
       required:
         - code
         - message
+
+
     Health:
       type: object
       properties:

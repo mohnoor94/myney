@@ -1,5 +1,7 @@
 package guru.noor.myney.service
 
+import guru.noor.myney.ErrorType
+import guru.noor.myney.MyneyError
 import guru.noor.myney.dao.TransactionRepository
 import guru.noor.myney.model.Transaction
 import org.springframework.stereotype.Service
@@ -22,7 +24,7 @@ class DefaultTransactionService(
     override fun findAll(): List<Transaction> = transactionRepository.findAll()
 
     override fun findById(id: String): Transaction =
-        transactionRepository.findById(id).orElseThrow { RuntimeException("Transaction not found") }
+        transactionRepository.findById(id).orElseThrow { MyneyError(ErrorType.ACCOUNT_NOT_FOUND) }
 
     override fun save(transaction: Transaction): Transaction = transactionRepository.save(transaction)
 }
