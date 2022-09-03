@@ -24,8 +24,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
-    implementation("org.springframework.boot:spring-boot-starter-data-rest:$springBootVersion")
+    //implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
 
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
 

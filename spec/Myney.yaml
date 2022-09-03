@@ -115,7 +115,7 @@ paths:
       parameters:
         - name: id
           in: path
-          description: Account ID
+          description: Sender Account ID
           required: true
           schema:
             type: string
@@ -125,7 +125,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Transaction'
+              $ref: '#/components/schemas/TransactionRequest'
       responses:
         '201':
           description: Created
@@ -233,6 +233,8 @@ components:
         - name
         - balance
         - currency
+
+
     Transaction:
       type: object
       properties:
@@ -265,6 +267,29 @@ components:
         - receiverAccountId
         - amount
         - currency
+
+
+    TransactionRequest:
+      type: object
+      properties:
+        receiverAccountId:
+          type: string
+          description: Receiver Account ID
+          example: f981810b-f774-475a-95a8-75090a2603db
+        amount:
+          type: number
+          description: Transaction amount
+          example: 2500
+        currency:
+          type: string
+          description: Transaction currency
+          example: USD
+      required:
+        - receiverAccountId
+        - amount
+        - currency
+
+
     Error:
       type: object
       properties:
