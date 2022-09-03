@@ -2,6 +2,7 @@ package guru.noor.myney.api.v1
 
 import guru.noor.myney.model.Transaction
 import guru.noor.myney.model.TransactionRequest
+import guru.noor.myney.service.TransactionService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*
@@ -11,11 +12,13 @@ import org.springframework.web.bind.annotation.*
  */
 @RestController
 @RequestMapping("/v1/accounts/{id}/transactions")
-class TransactionController {
+class TransactionController(
+    private val transactionService: TransactionService,
+) {
 
     @PostMapping
     fun sendMoney(@PathVariable id: String, @RequestBody transactionRequest: TransactionRequest): Transaction {
-        return Transaction.from(id, transactionRequest).also {
+        return transactionService.save(Transaction.from(id, transactionRequest)).also {
             log.info("Transaction request from account {} with the details: {}", id, transactionRequest)
             log.info("Transaction created: {}", it)
         }

@@ -17,3 +17,12 @@ info:
       name: Mohammad Noor
       url: https://www.noor.guru
       email: "moh.noor94@gmail.com"
+
+
+# JDBC properties
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mysql?useSSL=false&serverTimezone=UTC
+    # OMG, more security risks :3
+    username: noor
+    password: noor

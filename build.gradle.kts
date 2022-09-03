@@ -20,11 +20,14 @@ val springBootVersion = "2.7.3"
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
 
     implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
-    //implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+
+    implementation("mysql:mysql-connector-java:8.0.30")
 
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
 

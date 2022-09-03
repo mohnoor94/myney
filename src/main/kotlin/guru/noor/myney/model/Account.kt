@@ -2,10 +2,14 @@ package guru.noor.myney.model
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import guru.noor.myney.common.EMPTY_STRING
 import io.swagger.v3.oas.annotations.media.Schema
 import java.math.BigDecimal
 import java.time.ZonedDateTime
 import java.util.*
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.Table
 
 
 /**
@@ -17,28 +21,33 @@ import java.util.*
  * @property currency The currency of the account.
  * @property createdAt The date of creation of the account.
  */
-data class Account(
+@Entity
+@Table(name = "accounts")
+class Account(
+    @Id
     @JsonProperty("id")
     @Schema(example = "b3ef0159-6149-43b1-a54f-c75144e64931", required = true, description = "Account ID")
-    val id: String,
+    val id: String = EMPTY_STRING,
 
     @JsonProperty("name")
     @Schema(example = "Mohammad Noor", required = true, description = "Account name")
-    val name: String,
+    val name: String = EMPTY_STRING,
 
     @JsonProperty("balance")
     @Schema(example = "25000", required = true, description = "Account balance")
-    val balance: BigDecimal,
+    val balance: BigDecimal = BigDecimal.ZERO,
 
     @JsonProperty("currency")
     @Schema(example = "USD", required = true, description = "Account currency")
-    val currency: String,
+    val currency: String = "USD",
 
     @JsonProperty("createdAt")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX z")
     @Schema(example = "2022-09-02T23:13:19.534+03:00 EEST", required = true, description = "Account creation date")
-    val createdAt: ZonedDateTime,
+    val createdAt: ZonedDateTime = ZonedDateTime.now(),
 ) {
+
+
 
     companion object {
 
@@ -54,7 +63,7 @@ data class Account(
         fun create(
             name: String,
             balance: Number,
-            currency: String,
+            currency: String = "USD",
             createdAt: ZonedDateTime = ZonedDateTime.now(),
         ): Account = Account(
             UUID.randomUUID().toString(),
@@ -63,5 +72,9 @@ data class Account(
             currency,
             createdAt
         )
+    }
+
+    override fun toString(): String {
+        return "Account(id='$id', name='$name', balance=$balance, currency='$currency', createdAt=$createdAt)"
     }
 }
