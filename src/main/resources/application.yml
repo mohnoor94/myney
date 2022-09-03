@@ -8,6 +8,8 @@ management:
         # Security Risk, I know :3
         include: "health,info"
       base-path: /status
+
+
 info:
   app:
     name: Myney
@@ -26,3 +28,8 @@ spring:
     # OMG, more security risks :3
     username: noor
     password: noor
+
+
+server:
+  error:
+    include-message: always

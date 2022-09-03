@@ -1,8 +1,8 @@
 package guru.noor.myney.api.v1
 
-import guru.noor.myney.MyneyError
 import guru.noor.myney.dao.AccountRepository
 import guru.noor.myney.dao.TransactionRepository
+import guru.noor.myney.error.MyneyException
 import guru.noor.myney.mock.dao.AccountRepositoryMock
 import guru.noor.myney.mock.dao.TransactionRepositoryMock
 import guru.noor.myney.model.Account
@@ -71,7 +71,7 @@ class TransactionControllerTest {
             accountService
         )
 
-        assertThrows<MyneyError> {
+        assertThrows<MyneyException> {
             transactionController.sendMoney(transaction.senderAccountId, fromTransaction(transaction))
         }
     }
@@ -84,7 +84,7 @@ class TransactionControllerTest {
             accountService
         )
 
-        assertThrows<MyneyError> {
+        assertThrows<MyneyException> {
             transactionController.sendMoney(transaction.senderAccountId, fromTransaction(transaction))
         }
     }
@@ -97,7 +97,7 @@ class TransactionControllerTest {
             accountService
         )
 
-        assertThrows<MyneyError> {
+        assertThrows<MyneyException> {
             transactionController.sendMoney(transaction.senderAccountId, fromTransaction(transaction))
         }
     }
@@ -110,7 +110,7 @@ class TransactionControllerTest {
             accountService
         )
 
-        assertThrows<MyneyError> {
+        assertThrows<MyneyException> {
             transactionController.sendMoney(transaction.senderAccountId, fromTransaction(transaction))
         }
     }
