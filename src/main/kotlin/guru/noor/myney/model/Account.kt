@@ -62,13 +62,13 @@ class Account(
          */
         fun create(
             name: String,
-            balance: Number,
+            balance: BigDecimal,
             currency: String = "USD",
             createdAt: ZonedDateTime = ZonedDateTime.now(),
         ): Account = Account(
             UUID.randomUUID().toString(),
             name,
-            balance.toDouble().toBigDecimal(),
+            balance,
             currency,
             createdAt
         )

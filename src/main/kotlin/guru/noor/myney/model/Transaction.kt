@@ -27,7 +27,7 @@ class Transaction(
     @Id
     @JsonProperty("id")
     @Schema(example = "1b3ef0159-6149-43b1-a54f-c75144e64931", required = true, description = "Transaction ID")
-    val id: String? = null,
+    val id: String = EMPTY_STRING,
 
     @JsonProperty("senderAccountId")
     @Schema(example = "1b3ef0159-6149-43b1-a54f-c75144e64931", required = true, description = "Receiver Account ID")
