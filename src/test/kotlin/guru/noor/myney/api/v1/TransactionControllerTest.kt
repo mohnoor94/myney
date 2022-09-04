@@ -11,6 +11,8 @@ import guru.noor.myney.model.TransactionRequest
 import guru.noor.myney.service.AccountService
 import guru.noor.myney.service.DefaultAccountService
 import guru.noor.myney.service.DefaultTransactionService
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeEach
@@ -62,6 +64,32 @@ class TransactionControllerTest {
             assertEquals(125.toBigDecimal(), accountService.findById(transaction.receiverAccountId).balance)
         }
     }
+
+    @Test
+    fun `Test creating multiple transactions in parallel`() {
+        val transactionController = TransactionController(
+            DefaultTransactionService(transactionRepository),
+            accountService
+        )
+
+        val senderBalance = sender.balance
+        val receiverBalance = receiver.balance
+
+        runBlocking {
+            (1..100).map {
+                launch {
+                    transactionController.sendMoney(
+                        sender.id,
+                        fromTransaction(Transaction.create(sender.id, receiver.id, 5.toBigDecimal()))
+                    )
+                }
+            }
+        }
+
+        assertEquals(senderBalance - 500.toBigDecimal(), accountService.findById(sender.id).balance)
+        assertEquals(receiverBalance + 500.toBigDecimal(), accountService.findById(receiver.id).balance)
+    }
+
 
     @Test
     fun `Test creating a transaction with invalid sender account`() {
